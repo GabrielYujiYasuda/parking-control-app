@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -27,21 +28,26 @@ public class ParkingSpotController {
         this.parkingSpotService = parkingSpotService;
     }
 
-    //Method to SAVE the parking spot
     @PostMapping
+    //Method to SAVE the parking spot
     public ResponseEntity<Object> saveParkingSpot(@RequestBody @Valid ParkingSpotDto parkingSpotDto) {
         //Validating some information
         //Check if plateCar already exists
         if (parkingSpotService.existsByLicensePlateCar(parkingSpotDto.getLicensePlateCar())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: License Plate Car is already in use!");
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Conflict: License Plate Car is already in use!");
         }
         //Check if parkingSpotNumber
         if (parkingSpotService.existsByParkingSpotNumber(parkingSpotDto.getParkingSpotNumber())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Parking Spot is already in use!!");
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                            .body("Conflict: Parking Spot is already in use!!");
         }
         //Check if apartment and block is used
-        if (parkingSpotService.existsByApartmentAndApartmentBlock(parkingSpotDto.getApartment(), parkingSpotDto.getApartmentBlock())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("Conflict: Parking Spot is already in use!!");
+        if (parkingSpotService.existsByApartmentAndApartmentBlock(parkingSpotDto.getApartment(),
+                parkingSpotDto.getApartmentBlock())) {
+
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("Conflict: Parking Spot is already in use!!");
         }
 
         var parkingSpotModel = new ParkingSpotModel();
@@ -53,4 +59,8 @@ public class ParkingSpotController {
         return ResponseEntity.status(HttpStatus.CREATED).body(parkingSpotService.save(parkingSpotModel));
     }
 
+    @GetMapping
+    public ResponseEntity<List<ParkingSpotModel>> getAllParkingSpot() {
+        return ResponseEntity.status(HttpStatus.OK).body(parkingSpotService.findAll());
+    }
 }

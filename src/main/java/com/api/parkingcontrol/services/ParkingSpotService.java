@@ -5,6 +5,8 @@ import com.api.parkingcontrol.repositories.ParkingSpotRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 //The class that provides BUSINESS FUNCTIONALITIES
 public class ParkingSpotService {
@@ -31,4 +33,7 @@ public class ParkingSpotService {
         return parkingSpotRepository.existsByApartmentAndApartmentBlock(apartment, apartmentBlock);
     }
 
+    public List<ParkingSpotModel> findAll() {
+        return parkingSpotRepository.findAll();
+    }
 }
