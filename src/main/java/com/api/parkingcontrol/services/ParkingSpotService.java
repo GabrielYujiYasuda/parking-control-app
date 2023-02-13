@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
+//The class that provides BUSINESS FUNCTIONALITIES
 public class ParkingSpotService {
     final ParkingSpotRepository parkingSpotRepository;
 
@@ -16,6 +17,18 @@ public class ParkingSpotService {
     @Transactional
     public ParkingSpotModel save(ParkingSpotModel parkingSpotModel) {
         return parkingSpotRepository.save(parkingSpotModel);
+    }
+
+    public boolean existsByLicensePlateCar(String licensePlateCar) {
+        return parkingSpotRepository.existsByLicensePlateCar(licensePlateCar);
+    }
+
+    public boolean existsByParkingSpotNumber(String parkingSpotNumber) {
+        return parkingSpotRepository.existsByParkingSpotNumber(parkingSpotNumber);
+    }
+
+    public boolean existsByApartmentAndApartmentBlock(String apartment, String apartmentBlock) {
+        return parkingSpotRepository.existsByApartmentAndApartmentBlock(apartment, apartmentBlock);
     }
 
 }

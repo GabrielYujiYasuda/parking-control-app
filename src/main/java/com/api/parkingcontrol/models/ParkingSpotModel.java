@@ -69,6 +69,7 @@ public class ParkingSpotModel implements Serializable {
         this.licensePlateCar = licensePlateCar;
     }
 
+
     public String getBrandCar() {
         return brandCar;
     }

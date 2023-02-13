@@ -11,4 +11,7 @@ import java.util.UUID;
 //Repositories are basically an abstraction to the database access.
 public interface ParkingSpotRepository extends JpaRepository<ParkingSpotModel, UUID> /*Model, Identity*/ {
 
+    boolean existsByLicensePlateCar(String licensePlateCar);
+    boolean existsByParkingSpotNumber(String parkingSpotNumber);
+    boolean existsByApartmentAndApartmentBlock(String apartment, String apartmentBlock);
 }

@@ -92,8 +92,8 @@ public class ParkingSpotDto {
         return apartmentBlock;
     }
 
-    public void setApartmentBlock(String block) {
-        this.apartmentBlock = block;
+    public void setApartmentBlock(String apartmentBlock) {
+        this.apartmentBlock = apartmentBlock;
     }
     //Getters & Setters END
 }
