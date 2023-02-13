@@ -6,6 +6,8 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 //The class that provides BUSINESS FUNCTIONALITIES
@@ -19,6 +21,11 @@ public class ParkingSpotService {
     @Transactional
     public ParkingSpotModel save(ParkingSpotModel parkingSpotModel) {
         return parkingSpotRepository.save(parkingSpotModel);
+    }
+
+    @Transactional
+    public void delete(ParkingSpotModel parkingSpotModel) {
+        parkingSpotRepository.delete(parkingSpotModel);
     }
 
     public boolean existsByLicensePlateCar(String licensePlateCar) {
@@ -36,4 +43,9 @@ public class ParkingSpotService {
     public List<ParkingSpotModel> findAll() {
         return parkingSpotRepository.findAll();
     }
+
+    public Optional<ParkingSpotModel> findById(UUID id) {
+        return parkingSpotRepository.findById(id);
+    }
+
 }
