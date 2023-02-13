@@ -1,58 +1,37 @@
-package com.api.parkingcontrol.models;
+package com.api.parkingcontrol.dtos;
 
-import jakarta.persistence.*;
-import org.springframework.cglib.core.Local;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.UUID;
+public class ParkingSpotDto {
 
-@Entity //Parking model on database
-@Table(name = "TB_PARKING_SPOT")
-public class ParkingSpotModel implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
-
-    @Column(nullable = false, unique = true, length = 10)
+    @NotBlank
     private String parkingSpotNumber;
 
-    @Column(nullable = false, unique = true, length = 7)
+    @NotBlank
+    @Size(max = 7)
     private String licensePlateCar;
 
-    @Column(nullable = false, length = 70)
+    @NotBlank
     private String brandCar;
 
-    @Column(nullable = false, length = 70)
+    @NotBlank
     private String modelCar;
 
-    @Column(nullable = false, length = 70)
+    @NotBlank
     private String colorCar;
 
-    @Column(nullable = false)
-    private LocalDate registrationDate;
-
-    @Column(nullable = false, length = 130)
+    @NotBlank
     private String responsibleName;
 
-    @Column(nullable = false, length = 30)
+    @NotBlank
     private String apartment;
 
-    @Column(nullable = false, length = 30)
+    @NotBlank
     private String apartmentBlock;
 
 
-    //Getters and Setters
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
+    //Getters & Setters BEGINNING
     public String getParkingSpotNumber() {
         return parkingSpotNumber;
     }
@@ -93,14 +72,6 @@ public class ParkingSpotModel implements Serializable {
         this.colorCar = colorCar;
     }
 
-    public LocalDate getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(LocalDate registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
     public String getResponsibleName() {
         return responsibleName;
     }
@@ -121,8 +92,8 @@ public class ParkingSpotModel implements Serializable {
         return apartmentBlock;
     }
 
-    public void setApartmentBlock(String apartmentBlock) {
-        this.apartmentBlock = apartmentBlock;
+    public void setApartmentBlock(String block) {
+        this.apartmentBlock = block;
     }
-    //End of Getter and Setters
+    //Getters & Setters END
 }
