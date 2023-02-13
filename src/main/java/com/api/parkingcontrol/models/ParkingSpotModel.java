@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.UUID;
 
-@Entity
+@Entity //Parking model on data base
 @Table(name = "TB_PARKING_SPOT")
 public class ParkingSpotModel implements Serializable {
     private static final long serialVersionUID = 1L;
