@@ -104,8 +104,8 @@ public class ParkingSpotController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Parking Spot not found.");
         }
 
-        var parkingSpotModel = new ParkingSpotModel();
-
+        var parkingSpotModel = parkingSpotModelOptional.get();
+        
         parkingSpotModel.setParkingSpotNumber(parkingSpotDto.getParkingSpotNumber());
         parkingSpotModel.setLicensePlateCar(parkingSpotDto.getLicensePlateCar());
         parkingSpotModel.setBrandCar(parkingSpotDto.getBrandCar());
